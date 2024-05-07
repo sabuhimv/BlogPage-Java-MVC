@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{dashboard/layout}">
+
+
+<head>
+    <title>Category Page</title>
+</head>
+<body id="page-top">
+
+<div layout:fragment="container">
+
+    <a href="/admin/category/category-create" class="btn btn-primary btn-sm">Create Category</a>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="category: ${categories}">
+                <th th:text="${category.id}"></th>
+                <td th:text="${category.name}"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
