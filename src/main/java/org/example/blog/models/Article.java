@@ -15,15 +15,16 @@ public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     private String title;
     private String subtitle;
+
+    @Column(name = "description", length = 1000)
     private String description;
+
     private String photoUrl;
     private Date createdDate;
     private Date updatedDate;
     private int viewCount;
-
     @ManyToOne
     private Category category;
 
