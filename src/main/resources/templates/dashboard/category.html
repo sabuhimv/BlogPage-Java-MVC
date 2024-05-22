@@ -18,12 +18,17 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
+                <th scope="col">Actions</th>
             </tr>
         </thead>
         <tbody>
             <tr th:each="category: ${categories}">
                 <th th:text="${category.id}"></th>
                 <td th:text="${category.name}"></td>
+                <td>
+                    <a th:href="'/admin/category/update/' + ${category.id}" class="btn btn-outline-info btn-sm">Update</a>
+                    <a th:href="'/admin/category/remove/'+ ${category.id}"  class="btn btn-outline-danger btn-sm">Delete</a>
+                </td>
             </tr>
         </tbody>
     </table>

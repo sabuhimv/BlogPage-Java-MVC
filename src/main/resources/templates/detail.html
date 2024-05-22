@@ -1,0 +1,42 @@
+<html
+        xmlns:th="http://thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+<head>
+    <title> List</title>
+</head>
+<body class="d-flex flex-column h-100">
+<main class="flex-shrink-0">
+    <section layout:fragment="body" class="py-5">
+        <!-- Page Header-->
+        <header class="masthead" th:style="'background-image: url(' + ${article.photoUrl} + ')'">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="post-heading">
+                            <h1 th:text="${article.title}"></h1>
+                            <h2 th:text="${article.subtitle}" class="subheading"></h2>
+                            <span class="meta">
+                                Posted by
+                                <a href="#!">Start Bootstrap</a>
+                                <span th:text="${article.updatedDate}"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Post Content-->
+        <article class="mb-4">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div th:utext="${article.description}" class="col-md-10 col-lg-8 col-xl-7">
+
+                    </div>
+                </div>
+            </div>
+        </article>
+    </section>
+</main>
+</body>
+</html>

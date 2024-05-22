@@ -10,8 +10,6 @@
 <body id="page-top">
 
 <div layout:fragment="container">
-
-
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Tables</h1>
     <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
@@ -51,8 +49,8 @@
                             <td th:text="${article.updatedDate}"></td>
                             <td th:text="${article.viewCount}"></td>
                             <td>
-                                <a class="btn btn-sm btn-outline-warning">Update</a>
-                                <a class="btn btn-sm btn-outline-danger">Delete</a>
+                                <a th:href="'/admin/article/update/' + ${article.id}"   class="btn btn-sm btn-outline-warning">Update</a>
+                                <button th:onclick="'remove('+${article.id}+')'" class="btn btn-sm btn-outline-danger">Delete</button>
                             </td>
                         </tr>
                     </tbody>
@@ -73,6 +71,47 @@
         </div>
     </div>
 </div>
+
+<th:block layout:fragment="myScript">
+    <script>
+        function remove(id){
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: "btn btn-success",
+                    cancelButton: "btn btn-danger"
+                },
+                buttonsStyling: false
+            });
+            swalWithBootstrapButtons.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Yes, delete it!",
+                cancelButtonText: "No, cancel!",
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    swalWithBootstrapButtons.fire({
+                        title: "Deleted!",
+                        text: "Your file has been deleted.",
+                        icon: "success"
+                    });
+                    window.location="/admin/article/remove/"+id;
+                } else if (
+                    /* Read more about handling dismissals below */
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                    swalWithBootstrapButtons.fire({
+                        title: "Cancelled",
+                        text: "Your imaginary file is safe :)",
+                        icon: "error"
+                    });
+                }
+            });
+        }
+    </script>
+</th:block>
 
 </body>
 </html>

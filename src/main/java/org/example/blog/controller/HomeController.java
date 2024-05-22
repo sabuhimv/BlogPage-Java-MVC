@@ -1,6 +1,8 @@
 package org.example.blog.controller;
 
+import org.example.blog.dtos.articledtos.ArticleDetailDto;
 import org.example.blog.dtos.articledtos.ArticleDto;
+import org.example.blog.dtos.articledtos.ArticleHomeDto;
 import org.example.blog.dtos.categorydtos.CategoryCreateDto;
 import org.example.blog.services.ArticleService;
 import org.example.blog.services.CategoryService;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -24,7 +27,7 @@ public class HomeController {
 
     @GetMapping("/")
     public String index(Model model){
-        List<ArticleDto> articles= articleService.getArticles();
+        List<ArticleHomeDto> articles= articleService.getHomeArticles();
         model.addAttribute("articles",articles);
         return "home";
     }

@@ -16,6 +16,8 @@ public class Category {
     private Long id;
     private String name;
 
+    private Boolean isDeleted = false;
+
     @OneToMany
     @JoinColumn(name = "articles",nullable = true) // Bu annotasiya Articles cədvəlində Category cədvəlinin əsas açarına istinad edən xarici açar sütununu təyin edir. Sütunun adı "məqalələr" olaraq təyin edilib və o, null dəyərlərə icazə verir (məqalədə kateqoriya təyin olunmaya bilər).
     private List<Article> articles;

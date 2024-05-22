@@ -1,8 +1,7 @@
 package org.example.blog.models;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Date;
 import java.util.List;
@@ -18,13 +17,22 @@ public class Article {
     private String title;
     private String subtitle;
 
-    @Column(name = "description", length = 1000)
+    @Column(name = "description",  length = 10000)
     private String description;
 
     private String photoUrl;
     private Date createdDate;
     private Date updatedDate;
     private int viewCount;
+
+//      Sehv usuldur.!!!
+//    @Column(columnDefinition = "boolean default false")
+
+    private Boolean isDeleted = false;
+
+    private String seoUrl;
+
+
     @ManyToOne
     private Category category;
 
