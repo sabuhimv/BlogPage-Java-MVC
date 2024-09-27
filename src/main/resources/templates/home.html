@@ -3,7 +3,7 @@
         xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
         layout:decorate="~{layout}">
 <head>
-    <title> List</title>
+    <title>List</title>
 </head>
 <body class="d-flex flex-column h-100">
 <main class="flex-shrink-0">
@@ -26,6 +26,16 @@
         <!-- Main Content-->
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="container">
+                    <div class="row">
+                        <form method="post">
+                            <div class="form-group d-flex">
+                                <input type="text" name="searchTerm" placeholder="Search..." class="form-control">
+                                <input type="submit" value="Search" class="form-control btn btn-primary">
+                            </div>
+                        </form>
+                    </div>
+                </div>
                 <div class="col-md-10 col-lg-8 col-xl-7">
                     <!-- Post preview-->
                     <div th:each="article : ${articles}" class="post-preview">

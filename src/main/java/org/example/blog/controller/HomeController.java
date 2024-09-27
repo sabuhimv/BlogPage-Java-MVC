@@ -31,4 +31,11 @@ public class HomeController {
         model.addAttribute("articles",articles);
         return "home";
     }
+
+    @PostMapping("/")
+    public String index(String searchTerm,Model model){
+        List<ArticleHomeDto> articles= articleService.getHomeSearchArticles(searchTerm);
+        model.addAttribute("articles",articles);
+        return "home";
+    }
 }

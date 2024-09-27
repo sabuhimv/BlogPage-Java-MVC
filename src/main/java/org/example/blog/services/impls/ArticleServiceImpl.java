@@ -8,6 +8,7 @@ import org.example.blog.models.Category;
 import org.example.blog.repositories.ArticleRepository;
 import org.example.blog.repositories.CategoryRepository;
 import org.example.blog.services.ArticleService;
+import org.example.blog.services.EmailService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,6 +29,9 @@ public class ArticleServiceImpl implements ArticleService {
     @Autowired
     private CategoryRepository categoryRepository;
 
+    @Autowired
+    private EmailService emailService;
+
 
     @Override
     public List<ArticleDto> getArticles() {
@@ -45,6 +49,16 @@ public class ArticleServiceImpl implements ArticleService {
                 .map(article -> modelMapper.map(article, ArticleHomeDto.class))
                 .collect(Collectors.toList());
 
+        return articleHomeDtos;
+    }
+
+    @Override
+    public List<ArticleHomeDto> getHomeSearchArticles(String text) {
+        List<Article> articles = articleRepository.findByTitleContainingIgnoreCase(text);
+        List<ArticleHomeDto> articleHomeDtos = articles.stream()
+                .filter(x->x.getIsDeleted() == false)
+                .map(article -> modelMapper.map(article,ArticleHomeDto.class))
+                .collect(Collectors.toList());
         return articleHomeDtos;
     }
 

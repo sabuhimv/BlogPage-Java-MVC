@@ -7,6 +7,8 @@ import java.util.List;
 public interface ArticleService {
     List<ArticleDto> getArticles();
     List<ArticleHomeDto> getHomeArticles();
+    List<ArticleHomeDto> getHomeSearchArticles(String text);
+
     void addArticle(ArticleCreatDto articleCreatDto);
     void updateArticle(ArticleUpdateDto articleUpdateDto);
     ArticleUpdateDto findUpdateArticle(Long id);

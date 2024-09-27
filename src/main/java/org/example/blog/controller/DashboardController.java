@@ -6,8 +6,10 @@ import org.example.blog.dtos.articledtos.ArticleUpdateDto;
 import org.example.blog.dtos.categorydtos.CategoryCreateDto;
 import org.example.blog.dtos.categorydtos.CategoryDto;
 import org.example.blog.dtos.categorydtos.CategoryUpdateDto;
+import org.example.blog.dtos.userdtos.UserDashboardListDto;
 import org.example.blog.services.ArticleService;
 import org.example.blog.services.CategoryService;
+import org.example.blog.services.UserService;
 import org.example.blog.services.impls.CategoryServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.thymeleaf.spring6.processor.SpringUErrorsTagProcessor;
 
 import java.util.List;
 
@@ -28,6 +31,9 @@ public class DashboardController {
 
     @Autowired
     private  ArticleService articleService;
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/admin")
     public String index(){
@@ -105,5 +111,12 @@ public class DashboardController {
     public String updateCategory(@ModelAttribute CategoryUpdateDto categoryUpdateDto){
         categoryService.updateCategory(categoryUpdateDto);
         return "redirect:/admin/category";
+    }
+
+    @GetMapping("/admin/users")
+    public String getUsers(Model model){
+        List<UserDashboardListDto> userList = userService.getDashboardUsers();
+        model.addAttribute("users",userList);
+        return "/dashboard/auth/user-list";
     }
 }

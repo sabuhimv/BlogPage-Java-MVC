@@ -32,7 +32,6 @@ public class Article {
 
     private String seoUrl;
 
-
     @ManyToOne
     private Category category;
 
